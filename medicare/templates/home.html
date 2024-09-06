@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-image: url('/static/./background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #333; /* Default text color */
+        }
+        .navbar {
+            background-color: #50C878;
+        }
+        .navbar-brand, .nav-link {
+            color: #f8f9fa !important;
+        }
+        .welcome-section {
+            padding: 50px 0;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            border-radius: 8px;
+        }
+        .welcome-section h1 {
+            font-size: 2.5em;
+            color: #50C878;
+        }
+        .btn-custom {
+            background-color: #50C878;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .btn-custom:hover {
+            background-color: #45B568;
+        }
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .id:hover{
+            background-color: #45B568;
+        }
+    </style>
+
+    <title>Home Page</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a   class="nav-link btn btn-custom" style="text-decoration: none;" href="{% url 'home' %}"><span style=" font-weight: bolder; color: white; font-size: larger;">MediCare</span></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-custom" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-custom" href="{% url 'signup' %}">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="container welcome-section">
+        <h1>Welcome to Medicare</h1>
+        <p>Your trusted online platform for ordering medicines.</p>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

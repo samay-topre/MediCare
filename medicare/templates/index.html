@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-image: url('/static/./background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #333;
+            padding-bottom: 60px; /* Ensure space for the footer */
+            position: relative;
+            z-index: 1;
+            padding-top: 70px; /* Adjust padding to accommodate fixed navbar */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Adjust the opacity as needed (0.4 makes the image 60% dimmer) */
+            z-index: -1; /* Ensure the overlay is behind the content */
+        }
+
+        .card-deck {
+            margin-top: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-navbar {
+            background-color: #50C878;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+           
+            width: 100%;
+            bottom: 0;
+            z-index: 999; /* Ensure footer is above other elements */
+        }
+
+        .btn-primary {
+            background-color: #50C878;
+            border: none;
+           
+        }
+
+        .btn-primary:hover {
+            background-color: #45B568;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #333;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures the navbar is above other elements */
+        }
+        .card-title{
+            text-align: center;
+            font-weight: bolder;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            max-width: 150px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .product-details {
+            max-width: 600px;
+            text-align: left;
+        }
+        .product h5 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .product p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .product .btn {
+            background-color: #50C878;
+            border: none;
+        }
+        .product .btn:hover {
+            background-color: #45B568;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <span style="font-weight: bolder; font-size: larger;">Medicare</span>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <a class="dropdown-item" href="#pres">Upload Prescription</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Cough' %}">Cough</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Cold' %}">Cold</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Headache' %}">Headache</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'First Aid' %}">First Aid</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Skin Care' %}">Skin Care</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Baby Care Products' %}">Baby Care Products</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Proteins' %}">Proteins</a>
+                        <a class="dropdown-item" href="{% url 'products_by_category' 'Others' %}">Others</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle profile-link" href="#" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/static/./profile.png" alt="Profile Image" class="rounded-circle" width="30" height="30">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="#">My Orders</a>
+                        <a class="dropdown-item" href="{% url 'view_cart' %}">My Cart</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Cards Layout -->
+    <div class="container">
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./cold.jpg" class="card-img-top" alt="Cough">
+                    <div class="card-body">
+                        <h5 class="card-title">Cold</h5>
+                        <p class="card-text">Explore treatments for common cold.</p>
+                        <a  href="{% url 'products_by_category' 'Cold' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./headache.jpeg" class="card-img-top" alt="Cold">
+                    <div class="card-body">
+                        <h5 class="card-title">Headache</h5>
+                        <p style="text-align: center;" class="card-text">Medicines to relieve headache symptoms.</p>
+                        <a href="{% url 'products_by_category' 'Headache' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./backpain.jpeg" class="card-img-top" alt="Headache">
+                    <div class="card-body">
+                        <h5 class="card-title">Backpain</h5>
+                        <p class="card-text">Ease back pain with our remedies.</p>
+                        <a href="{% url 'products_by_category' 'Backpain' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat this structure for additional cards -->
+        </div>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./throat.jpeg" class="card-img-top" alt="Cough">
+                    <div class="card-body">
+                        <h5 class="card-title">Sore Throat</h5>
+                        <p class="card-text">Soothe sore throat with our remedies.</p>
+                        <a href="{% url 'products_by_category' 'Sore Throat' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./asthma.jpeg" class="card-img-top" alt="Cold">
+                    <div class="card-body">
+                        <h5 class="card-title">Asthma</h5>
+                        <p class="card-text">Control asthma with proven medications.</p>
+                        <a href="{% url 'products_by_category' 'Asthma' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./migraine.jpeg" class="card-img-top" alt="Headache">
+                    <div class="card-body">
+                        <h5 class="card-title">Migraine</h5>
+                        <p class="card-text">Alleviate migraine pain with our solutions.</p>
+                        <a href="{% url 'products_by_category' 'Migraine' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat this structure for additional cards -->
+        </div>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./flu.jpeg" class="card-img-top" alt="Cough">
+                    <div class="card-body">
+                        <h5 class="card-title">Flu (Influenza)</h5>
+                        <p class="card-text">Combat flu symptoms with trusted medications.</p>
+                        <a href="{% url 'products_by_category' 'Influenza' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./stomach.jpeg" class="card-img-top" alt="Cold">
+                    <div class="card-body">
+                        <h5 class="card-title">Stomach Ache</h5>
+                        <p class="card-text">Get relief from stomach ache with these treatments.</p>
+                        <a href="{% url 'products_by_category' 'Stomach Ache' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/media/./rash.jpeg" class="card-img-top" alt="Headache">
+                    <div class="card-body">
+                        <h5 class="card-title">Skin Rashes</h5>
+                        <p class="card-text">Soothe skin rashes with our treatments and get relief</p>
+                        <a href="{% url 'products_by_category' 'Skin Rashes' %}" class="btn btn-primary">View Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat this structure for additional cards -->
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <!-- Product 1 -->
+        <div class="product">
+            <img src="/media/./firstaid.jpeg" alt="Cold">
+            <div class="product-details">
+                <h5>First Aid Kits</h5>
+                <p>Our comprehensive first aid kits are essential for every home and workplace, including a wide range of medical supplies such as bandages, antiseptics, gauze, and more to treat minor injuries and emergencies.</p>
+                <a href="{% url 'products_by_category' 'First Aid' %}" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product">
+            <img src="/media/./skincare.jpeg" alt="Cough">
+            <div class="product-details">
+                <h5>Skin Care</h5>
+                <p>Skin care involves practices that support skin integrity, enhance its appearance, and alleviate skin conditions. This includes cleansing, moisturizing, protecting from sun damage, and using specialized treatments for conditions like acne or aging skin.</p>
+                <a href="{% url 'products_by_category' 'Skin Care' %}" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product">
+            <img src="/media/./babycare.jpeg" alt="Headache">
+            <div class="product-details">
+                <h5>Baby Care Products</h5>
+                <p>Baby care products encompass a range of items designed for the health, hygiene, and comfort of infants and young children. These products often include gentle cleansers, moisturizers, diapers, wipes, baby oils, lotions, and specific items like baby formula, pacifiers, and teething toys.</p>
+                <a href="{% url 'products_by_category' 'Baby Care Products' %}" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <!-- Repeat this structure for additional products -->
+        <!-- Product 4 -->
+       
+    </div>
+
+    <div  id="pres" class="container mt-5">
+        
+        <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <form method="post" action="{% url 'order' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" style="color: #50C878;">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Patient's Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="address" style="color: #50C878;">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Your Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" style="color: #50C878;">Phone:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" style="color: #50C878;">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="prescription" style="color: #50C878;">Upload Prescription:</label>
+                    <input type="file" class="form-control-file" id="prescription" name="prescription" accept=".jpg,.jpeg,.png,.pdf" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Order Now</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer Navbar -->
+    <div   style="  margin-top: 20px; background-color: black;" class="footer-navbar">
+        Medicare Pvt Ltd
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
